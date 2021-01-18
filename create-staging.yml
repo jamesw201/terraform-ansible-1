@@ -19,8 +19,8 @@
       args:
         chdir: terraform/
       environment:
-        aws_secret_access_key: "{{ lookup('cypher','secret=tfvars/TerraformAnsible')|to_json|community.general.json_query('aws_secret_access_key') }}"
-        aws_access_key_id: "{{ lookup('cypher','secret=tfvars/TerraformAnsible')|to_json|community.general.json_query('aws_access_key_id') }}"
+        aws_secret_access_key: "{{ lookup('cypher','secret=tfvars/TerraformAnsible')|to_json|json_query('aws_secret_access_key') }}"
+        aws_access_key_id: "{{ lookup('cypher','secret=tfvars/TerraformAnsible')|to_json|json_query('aws_access_key_id') }}"
       vars:
           private_key_name: a_wrong_value
           private_key_file_path: a_wrong_value
