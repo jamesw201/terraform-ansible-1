@@ -35,8 +35,8 @@
     - name: plan terraform script
       check_mode: yes
       environment:
-        aws_secret_access_key: "{{ lookup('cypher','secret=tfvars/TerraformAnsible')|to_json|json_query('aws_secret_access_key') }}"
-        aws_access_key_id: "{{ lookup('cypher','secret=tfvars/TerraformAnsible')|to_json|json_query('aws_access_key_id') }}"
+        AWS_SECRET_ACCESS_KEY: "{{ lookup('cypher','secret=tfvars/TerraformAnsible')|to_json|json_query('aws_secret_access_key') }}"
+        AWS_ACCESS_KEY_ID: "{{ lookup('cypher','secret=tfvars/TerraformAnsible')|to_json|json_query('aws_access_key_id') }}"
       terraform:
         binary_path: /usr/local/bin/terraform
         project_path: terraform/
