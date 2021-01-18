@@ -33,6 +33,7 @@
           ssh_location: 0.0.0.0/0
 
     - name: plan terraform script
+      check_mode: yes
       terraform:
         binary_path: /usr/local/bin/terraform
         project_path: terraform/
