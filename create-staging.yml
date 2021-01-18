@@ -31,7 +31,12 @@
           private_key_name: a_wrong_value
           private_key_file_path: a_wrong_value
           ssh_location: 0.0.0.0/0
-    # - name: apply terraform script
-    #   terraform:
-    #     project_path: terraform/
-    #     state: present
+
+   - name: plan terraform script
+       terraform:
+         binary_path: /usr/local/bin/terraform
+         project_path: terraform/
+         state: planned
+        variables:
+          aws_secret_access_key: "{{ lookup('cypher','secret=tfvars/TerraformAnsible')|to_json|json_query('aws_secret_access_key') }}"
+          aws_access_key_id: "{{ lookup('cypher','secret=tfvars/TerraformAnsible')|to_json|json_query('aws_access_key_id') }}"
