@@ -34,13 +34,14 @@
 
     - name: plan terraform script
       check_mode: yes
+      environment:
+        aws_secret_access_key: "{{ lookup('cypher','secret=tfvars/TerraformAnsible')|to_json|json_query('aws_secret_access_key') }}"
+        aws_access_key_id: "{{ lookup('cypher','secret=tfvars/TerraformAnsible')|to_json|json_query('aws_access_key_id') }}"
       terraform:
         binary_path: /usr/local/bin/terraform
         project_path: terraform/
         state: present
         variables:
-          aws_secret_access_key: "{{ lookup('cypher','secret=tfvars/TerraformAnsible')|to_json|json_query('aws_secret_access_key') }}"
-          aws_access_key_id: "{{ lookup('cypher','secret=tfvars/TerraformAnsible')|to_json|json_query('aws_access_key_id') }}"
           private_key_name: a_wrong_value
           private_key_file_path: a_wrong_value
           ssh_location: 0.0.0.0/0
