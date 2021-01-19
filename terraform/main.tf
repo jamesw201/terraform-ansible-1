@@ -167,7 +167,6 @@ resource "aws_security_group" "public" {
     from_port   = -1
     to_port     = -1
     protocol    = "icmp"
-    cidr_blocks = ["${var.ssh_location}/32"]
   }
 
   ingress {
@@ -175,7 +174,6 @@ resource "aws_security_group" "public" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["${var.ssh_location}/32"]
   }
 
   ingress {
@@ -183,7 +181,6 @@ resource "aws_security_group" "public" {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["${var.ssh_location}/32"]
   }
 
   ingress {
@@ -191,7 +188,6 @@ resource "aws_security_group" "public" {
     from_port   = 8080
     to_port     = 8080
     protocol    = "tcp"
-    cidr_blocks = ["${var.ssh_location}/32"]
   }
 
   egress {
