@@ -41,7 +41,14 @@
         binary_path: /usr/local/bin/terraform
         project_path: terraform/
         state: present
-        variables:
-          private_key_name: a_wrong_value
-          private_key_file_path: a_wrong_value
-          ssh_location: 0.0.0.0/0
+
+
+    - name: plan terraform script
+      check_mode: yes
+      environment:
+        AWS_SECRET_ACCESS_KEY: "{{ lookup('cypher','secret=tfvars/TerraformAnsible')|json_query('aws_secret_access_key') }}"
+        AWS_ACCESS_KEY_ID: "{{ lookup('cypher','secret=tfvars/TerraformAnsible')|json_query('aws_access_key_id') }}"
+      terraform:
+        binary_path: /usr/local/bin/terraform
+        project_path: terraform/
+        state: present
